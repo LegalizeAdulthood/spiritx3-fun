@@ -17,7 +17,11 @@
 #include "../fun/config.hpp"
 #include "../fun/interpreter.hpp"
 
-#include <boost/spirit/home/x3/support/utility/testing.hpp>
+#include "testing.hpp"
+
+#ifndef M_PI
+const double M_PI = 3.14159265359;
+#endif
 
 namespace fs = boost::filesystem;
 namespace testing = boost::spirit::x3::testing;
@@ -36,7 +40,7 @@ auto parse = [](std::string const& source, fs::path input_path)-> std::string
     // Our error handler
     using boost::spirit::x3::with;
     using fun::parser::error_handler_type;
-    error_handler_type error_handler(iter, end, out, input_path.c_str()); // Our error handler
+    error_handler_type error_handler(iter, end, out, input_path.string()); // Our error handler
 
     // Our parser
     auto const parser =

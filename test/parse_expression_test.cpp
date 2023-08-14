@@ -15,9 +15,10 @@
 #include "../fun/config.hpp"
 #include "../fun/printer.hpp"
 
-#include <boost/spirit/home/x3/support/utility/testing.hpp>
+#include "testing.hpp"
 
 namespace fs = boost::filesystem;
+namespace x3 = boost::spirit::x3;
 namespace testing = boost::spirit::x3::testing;
 
 auto parse = [](std::string const& source, fs::path input_path)-> std::string
@@ -34,7 +35,7 @@ auto parse = [](std::string const& source, fs::path input_path)-> std::string
     // Our error handler
     using boost::spirit::x3::with;
     using fun::parser::error_handler_type;
-    error_handler_type error_handler(iter, end, out, input_path.c_str()); // Our error handler
+    error_handler_type error_handler(iter, end, out, input_path.string()); // Our error handler
 
     // Our parser
     auto const parser =

@@ -31,7 +31,7 @@ namespace fun { namespace ast { namespace
             , error_handler(error_handler)
         {}
 
-        double operator()(ast::nil) const { BOOST_ASSERT(0); }
+        double operator()(ast::nil) const { BOOST_ASSERT(0); return -1; }
         double operator()(double ast) const;
         double operator()(double lhs, ast::operation const& ast) const;
         double operator()(ast::signed_ const& ast) const;

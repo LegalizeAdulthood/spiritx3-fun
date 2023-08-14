@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+  "name": "asio-http-websocket",
+  "version": "1.0.0",
+  "dependencies": [
+    "boost-foreach",
+    "boost-filesystem",
+    "boost-spirit",
+    "boost-variant"
+  ]
+}
