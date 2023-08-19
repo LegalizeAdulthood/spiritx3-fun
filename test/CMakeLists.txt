@@ -1,11 +1,8 @@
 function(build_test name)
     add_executable(${name} ${name}_test.cpp testing.hpp)
     target_link_libraries(${name} PUBLIC fun Boost::filesystem)
-    file(GLOB inputs ${name}/*.input)
-    foreach(input ${inputs})
-        get_filename_component(base ${input} NAME_WE)
-        add_test(NAME ${name}-${base} COMMAND ${name} "${CMAKE_CURRENT_SOURCE_DIR}/${name}/${input}")
-    endforeach()
+    target_link_directories(${name} PUBLIC $<TARGET_LINKER_FILE_DIR:Boost::filesystem>)
+    add_test(NAME ${name}-${base} COMMAND ${name} "${CMAKE_CURRENT_SOURCE_DIR}/${name}")
     set_target_properties(${name} PROPERTIES FOLDER Tests)
 endfunction()
 
